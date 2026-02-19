@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadQuotesFromS3",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject"],
+      "Resource": "arn:aws:s3:::har-vmat-xbot-ap-south-1/quotes.csv"
+    },
+    {
+      "Sid": "ReadSecret",
+      "Effect": "Allow",
+      "Action": ["secretsmanager:GetSecretValue"],
+      "Resource": "arn:aws:secretsmanager:ap-south-1:YOUR_ACCOUNT_ID:secret:x-bot-credentials*"
+    },
+    {
+      "Sid": "ReadWriteState",
+      "Effect": "Allow",
+      "Action": ["dynamodb:GetItem", "dynamodb:PutItem"],
+      "Resource": "arn:aws:dynamodb:ap-south-1:YOUR_ACCOUNT_ID:table/x_quote_bot_state"
+    }
+  ]
+}
